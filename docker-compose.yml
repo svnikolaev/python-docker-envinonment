@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  python_environment:
+    tty: true
+    build:
+      context: .
+      secrets:
+        - SECRETS 
+      args:
+        HTTP_PROXY: ${HTTP_PROXY}
+        HTTPS_PROXY: ${HTTP_PROXY}
+        PYTHON_VER: ${PYTHON_VER}
+    container_name: "python_env"
+    restart: unless-stopped
+    environment:
+      http_proxy: ${HTTP_PROXY}
+      https_proxy: ${HTTP_PROXY}
+      HTTP_PROXY: ${HTTP_PROXY}
+      HTTPS_PROXY: ${HTTP_PROXY}
+    ports:
+      - "18000:8000"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "~/dev:/home/user/dev"
+
+secrets:
+  SECRETS:
+    file: secrets_file
