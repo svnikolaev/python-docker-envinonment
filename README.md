@@ -1,9 +1,17 @@
 # Python development environment in Docker container
 
+Allows you to put the folder `~/dev` inside the container ("/home/user/dev") and run the code using the desired version of Python.
+
+## Step 0: Clone this repository
+
+```shell
+git clone https://github.com/svnikolaev/python-docker-envinonment.git
+cd python-docker-envinonment
+```
+
 ## Step 1: Setup `secrets_file`
 
-Create `secrets_file` like `secrets_file.example` and set passwords for users
-`root` and `user`:
+Create `secrets_file` like `secrets_file.example` and set passwords for users `root` and `user`:
 
 ```text
 root:password1
@@ -23,10 +31,6 @@ user:password2
 ### environment with http proxy
 
 `PYTHON_VER=3.11 HTTP_PROXY=http://example.com:8080 docker compose up -d --build`
-
-### Stop Docker Container
-
-`docker compose down`
 
 ## Step 3: Connect to the container
 
@@ -57,6 +61,10 @@ tests/test_cases.py ..
 
 ================================ 2 passed in 0.84s ============================
 ```
+
+## (Optional) Stop Docker Container
+
+`docker compose down`
 
 ## (Optional) Build Docker image
 
